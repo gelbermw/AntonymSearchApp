@@ -4,7 +4,7 @@ package cmsc355.me.find_antonym;
  * Created by gelbe on 3/21/2018.
  */
 
-public class Contact {
+public class findAntonym {
     String wordEntered, antonym;
 
     public void setWord(String wordEntered){

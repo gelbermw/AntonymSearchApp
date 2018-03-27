@@ -33,7 +33,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         this.db = db;
     }
 
-    public void insertContact(Contact c){
+    public void insertContact(findAntonym a){
         db = this.getWritableDatabase();
         ContentValues values= new ContentValues();
 
@@ -42,8 +42,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         int count = cursor.getCount();
 
         values.put(COLUMN_ID, count);
-        values.put(COLUMN_WORD, c.getWord());
-        values.put(COLUMN_ANT, c.getAnt());
+        values.put(COLUMN_WORD, a.getWord());
+        values.put(COLUMN_ANT, a.getAnt());
 
         db.insert(TABLE_NAME,null,values);
         db.close();

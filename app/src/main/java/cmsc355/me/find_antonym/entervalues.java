@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 /**
  * Created by gelbe on 3/21/2018.
@@ -29,11 +28,11 @@ public class entervalues extends Activity {
             String wordstr = word.getText().toString();
             String antstr = ant.getText().toString();
 
-            Contact c = new Contact();
-            c.setWord(wordstr);
-            c.setAnt(antstr);
+            findAntonym a = new findAntonym();
+            a.setWord(wordstr);
+            a.setAnt(antstr);
 
-            helper.insertContact(c);
+            helper.insertContact(a);
 
             Intent i = new Intent(entervalues.this, MainActivity.class);
             startActivity(i);
