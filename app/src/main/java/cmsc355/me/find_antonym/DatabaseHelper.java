@@ -15,12 +15,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "antonym.db";
     private static final String TABLE_NAME = "findantonym";
-    private static final String COLUMN_ID = "id";
     private static final String COLUMN_WORD = "word";
     private static final String COLUMN_ANT = "antonym";
     SQLiteDatabase db;
 
-    private static final String TABLE_CREATE = "create table findantonym (id integer primary key not null , " +
+    private static final String TABLE_CREATE = "create table findantonym (id integer primary key autoincrement, " +
             "word text not null, antonym text not null);";
 
     public DatabaseHelper(Context context){
@@ -31,17 +30,40 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(TABLE_CREATE);
         this.db = db;
+        ContentValues values= new ContentValues();
+        values.put(COLUMN_WORD, "new");
+        values.put(COLUMN_ANT,  "old");
+        db.insert(TABLE_NAME, null, values);
+        values.put(COLUMN_WORD, "first");
+        values.put(COLUMN_ANT,  "last");
+        db.insert(TABLE_NAME, null, values);
+        values.put(COLUMN_WORD, "big");
+        values.put(COLUMN_ANT,  "little");
+        db.insert(TABLE_NAME, null, values);
+        values.put(COLUMN_WORD, "smart");
+        values.put(COLUMN_ANT,  "stupid");
+        db.insert(TABLE_NAME, null, values);
+        values.put(COLUMN_WORD, "good");
+        values.put(COLUMN_ANT,  "bad");
+        db.insert(TABLE_NAME, null, values);
+        values.put(COLUMN_WORD, "short");
+        values.put(COLUMN_ANT,  "long");
+        db.insert(TABLE_NAME, null, values);
+        values.put(COLUMN_WORD, "important");
+        values.put(COLUMN_ANT,  "insignificant");
+        db.insert(TABLE_NAME, null, values);
+        //values.put(COLUMN_WORD, "happy");
+        //values.put(COLUMN_ANT,  "sad");
+        //db.insert(TABLE_NAME, null, values);
     }
 
-    public void insertContact(findAntonym a){
+    public void insertWord(findAntonym a){
         db = this.getWritableDatabase();
         ContentValues values= new ContentValues();
 
         String query = "select * from findantonym";
         Cursor cursor = db.rawQuery(query, null);
-        int count = cursor.getCount();
 
-        values.put(COLUMN_ID, count);
         values.put(COLUMN_WORD, a.getWord());
         values.put(COLUMN_ANT, a.getAnt());
 
@@ -74,7 +96,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+    public void onUpgrade(SQLiteDatabase db, int i, int i1) {
         String query = "DROP TABLE IF EXISTS "+TABLE_NAME;
         db.execSQL(query);
         this.onCreate(db);

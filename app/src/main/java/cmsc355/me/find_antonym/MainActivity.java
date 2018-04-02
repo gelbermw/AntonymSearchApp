@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void onButtonClick(View v){
         if(v.getId()==R.id.Bant){
-            EditText a = (EditText)findViewById(R.id.TFenterword);
+            EditText a = (EditText) findViewById(R.id.TFenterword);
             String str = a.getText().toString();
 
             String antonym = helper.searchAnt(str);

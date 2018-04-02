@@ -32,7 +32,7 @@ public class entervalues extends Activity {
             a.setWord(wordstr);
             a.setAnt(antstr);
 
-            helper.insertContact(a);
+            helper.insertWord(a);
 
             Intent i = new Intent(entervalues.this, MainActivity.class);
             startActivity(i);
